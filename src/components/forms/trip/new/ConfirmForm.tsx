@@ -2,19 +2,30 @@ import { useState, useMemo } from "react";
 import { View, Text, Pressable } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Trip, FormStep, TripClassification } from "../../../../types";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type PropTypes = {
-  setCurrentStep: React.Dispatch<React.SetStateAction<FormStep>>;
   newTrip: Trip;
-  setNewTrip: React.Dispatch<React.SetStateAction<Trip>>;
+  dismissModal: () => void
 };
 
 const ConfirmForm: React.FC<PropTypes> = ({
-  setCurrentStep,
   newTrip,
-  setNewTrip,
+  dismissModal
 }): JSX.Element => {
-  const createTrip = (): void => {};
+
+  const createTrip = async (): Promise<void> => {
+    // console.log('newTrip')
+    // console.log(newTrip)
+    try {
+      let existingTrips = JSON.parse(await AsyncStorage.getItem('trips') || "[]")
+      // console.log('existingTrips:', existingTrips)
+      await AsyncStorage.setItem('trips', JSON.stringify([...existingTrips, newTrip]))
+      dismissModal()
+    } catch (e) {
+      console.log('error',e)
+    }
+  };
 
   return (
     <View className="w-full h-full flex flex-col justify-between items-center pb-4">

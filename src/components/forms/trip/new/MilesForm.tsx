@@ -16,12 +16,12 @@ const MilesForm: React.FC<PropTypes> = ({ setCurrentStep, newTrip, setNewTrip })
     return parseFloat(miles) > 0
   }, [miles])
 
-  const getTotalDeduction = () => {
+  const getTotalDeduction = (): number => {
     return Math.floor(miles * newTrip.deductionRate) / 100.00
   }
 
   const confirmMiles = () => {
-    setNewTrip({ ...newTrip, miles, total: getTotalDeduction()});
+    setNewTrip({ ...newTrip, miles: parseFloat(miles), total: getTotalDeduction()});
     setCurrentStep(4)
   };
 

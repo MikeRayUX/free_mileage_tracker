@@ -84,10 +84,9 @@ const NewTripFormModal: React.FC<PropTypes> = ({
                 setNewTrip={setNewTrip}
               />
             ) : null}
-            {currentStep === 4 ? <ConfirmForm
-                newTrip={newTrip}
-                setNewTrip={setNewTrip}
-              /> : null}
+            {currentStep === 4 ? (
+              <ConfirmForm newTrip={newTrip} dismissModal={dismissModal} />
+            ) : null}
           </View>
         </View>
       </Modal>
