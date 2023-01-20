@@ -1,21 +1,20 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useContext } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { View, Text, Pressable } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { Trip, FormStep, TripClassification } from "../../../../types";
+import { FormStep, TripClassification } from "../../../../types";
 import { PURPOSE_OPTIONS } from "../../../../contants/constants";
+import { TripContext } from "../../../../context/TripContext";
 
 type PropTypes = {
   setCurrentStep: React.Dispatch<React.SetStateAction<FormStep>>;
-  newTrip: Trip;
-  setNewTrip: React.Dispatch<React.SetStateAction<Trip>>;
 };
 
-const ClassifyForm: React.FC<PropTypes> = ({
-  setCurrentStep,
-  newTrip,
-  setNewTrip,
-}): JSX.Element => {
+const ClassifyForm: React.FC<PropTypes> = ({ setCurrentStep }): JSX.Element => {
+  const {
+    state: { newTrip },
+    dispatch,
+  } = useContext(TripContext);
   const [selectedClassification, setSelectedClassification] = useState<string>(
     PURPOSE_OPTIONS[0]
   );
@@ -47,10 +46,13 @@ const ClassifyForm: React.FC<PropTypes> = ({
   };
 
   const confirmClassification = () => {
-    setNewTrip({
-      ...newTrip,
-      classification: selectedClassification as TripClassification,
-      deductionRate: getDeductionRate(),
+    dispatch({
+      type: "set_new_trip",
+      payload: {
+        ...newTrip,
+        classification: selectedClassification as TripClassification,
+        deductionRate: getDeductionRate(),
+      },
     });
     setCurrentStep(3);
   };

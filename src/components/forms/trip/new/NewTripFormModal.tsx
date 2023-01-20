@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { View } from "react-native";
 import Modal from "react-native-modal";
 import FormProgressHeader from "./FormProgressHeader";
@@ -6,7 +6,7 @@ import DateForm from "./DateForm";
 import ClassifyForm from "./ClassifyForm";
 import MilesForm from "./MilesForm";
 import ConfirmForm from "./ConfirmForm";
-import { Trip } from "../../../../types";
+import { TripContext } from "../../../../context/TripContext";
 
 type PropTypes = {
   newTripFormVisible: boolean;
@@ -17,16 +17,13 @@ const NewTripFormModal: React.FC<PropTypes> = ({
   newTripFormVisible,
   setNewTripFormVisible,
 }): JSX.Element => {
-  const [currentStep, setCurrentStep] = useState<number>(1);
+  const { dispatch } = useContext(TripContext);
 
-  const [newTrip, setNewTrip] = useState<Trip>({
-    date: null,
-    formattedDate: null,
-    classification: null,
-    deductionRate: null,
-    miles: 0,
-    total: null,
-  });
+  useEffect(() => {
+    dispatch({ type: "reset_new_trip" });
+  }, []);
+
+  const [currentStep, setCurrentStep] = useState<number>(1);
 
   const goBack = (): void => {
     if (currentStep === 1) {
@@ -40,14 +37,7 @@ const NewTripFormModal: React.FC<PropTypes> = ({
   const dismissModal = (): void => {
     setCurrentStep(1);
     setNewTripFormVisible(false);
-    setNewTrip({
-      date: null,
-      formattedDate: null,
-      classification: null,
-      deductionRate: null,
-      miles: 0,
-      total: null,
-    });
+    dispatch({ type: "reset_new_trip" });
   };
 
   return (
@@ -63,30 +53,10 @@ const NewTripFormModal: React.FC<PropTypes> = ({
             style={{ height: 480 }}
             className={"flex rounded-b-xl bg-white px-4 pb-0"}
           >
-            {currentStep === 1 ? (
-              <DateForm
-                setCurrentStep={setCurrentStep}
-                newTrip={newTrip}
-                setNewTrip={setNewTrip}
-              />
-            ) : null}
-            {currentStep === 2 ? (
-              <ClassifyForm
-                setCurrentStep={setCurrentStep}
-                newTrip={newTrip}
-                setNewTrip={setNewTrip}
-              />
-            ) : null}
-            {currentStep === 3 ? (
-              <MilesForm
-                setCurrentStep={setCurrentStep}
-                newTrip={newTrip}
-                setNewTrip={setNewTrip}
-              />
-            ) : null}
-            {currentStep === 4 ? (
-              <ConfirmForm newTrip={newTrip} dismissModal={dismissModal} />
-            ) : null}
+            {currentStep === 1 ? (<DateForm setCurrentStep={setCurrentStep} />) : null}
+            {currentStep === 2 ? (<ClassifyForm setCurrentStep={setCurrentStep} />) : null}
+            {currentStep === 3 ? (<MilesForm setCurrentStep={setCurrentStep} />) : null}
+            {currentStep === 4 ? (<ConfirmForm dismissModal={dismissModal} />) : null}
           </View>
         </View>
       </Modal>

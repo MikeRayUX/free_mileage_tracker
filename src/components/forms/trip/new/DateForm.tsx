@@ -1,36 +1,35 @@
-import { useState, useEffect } from "react";
 import { View, Text, Pressable } from "react-native";
+import { useState, useMemo, useContext } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { getFormattedDate } from "../../../../helpers/date";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { FormStep, Trip } from "../../../../types";
+import { FormStep } from "../../../../types";
+import { TripContext } from "../../../../context/TripContext";
 
 type PropTypes = {
   setCurrentStep: React.Dispatch<React.SetStateAction<FormStep>>;
-  newTrip: Trip;
-  setNewTrip: React.Dispatch<React.SetStateAction<Trip>>;
 };
 
-const DateForm: React.FC<PropTypes> = ({
-  setCurrentStep,
-  newTrip,
-  setNewTrip,
-}) => {
+const DateForm: React.FC<PropTypes> = ({ setCurrentStep }) => {
+  const {
+    state: { newTrip },
+    dispatch,
+  } = useContext(TripContext);
+
   const today = new Date();
   const beginningOfYear = new Date(today.getFullYear(), 0, 1);
   const [selectedDate, setSelectedDate] = useState<Date>(today);
-  const [formattedDate, setFormattedDate] = useState<string>(
-    getFormattedDate(today)
-  );
 
-  const onDateChange = (_event: any, selectedDate: Date) => {
-    setSelectedDate(selectedDate);
-    setFormattedDate(getFormattedDate(selectedDate));
-  };
+  const formattedDate = useMemo(() => {
+    return getFormattedDate(selectedDate);
+  }, [selectedDate]);
 
   const confirmDate = () => {
-    setNewTrip({ ...newTrip, date: selectedDate, formattedDate});
-    setCurrentStep(2)
+    dispatch({
+      type: "set_new_trip",
+      payload: { ...newTrip, date: selectedDate, formattedDate },
+    });
+    setCurrentStep(2);
   };
 
   return (
@@ -62,7 +61,9 @@ const DateForm: React.FC<PropTypes> = ({
             is24Hour={true}
             mode={"date"}
             display={"spinner"}
-            onChange={onDateChange}
+            onChange={(_event: any, selectedDate: Date) =>
+              setSelectedDate(selectedDate)
+            }
             className={"py-2 w-full"}
           />
         </View>

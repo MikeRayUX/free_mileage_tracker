@@ -1,6 +1,7 @@
 export type TripClassification = "Business" | "Medical/Moving" | "Charitable";
 
 export type Trip = {
+  id: string;
   date: Date;
   formattedDate: string;
   classification: string;

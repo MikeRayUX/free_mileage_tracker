@@ -1,28 +1,39 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useContext } from "react";
 import { View, Pressable, Text, TextInput } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { Trip, FormStep } from "../../../../types";
+import { FormStep } from "../../../../types";
+import { TripContext } from "../../../../context/TripContext";
 
 type PropTypes = {
   setCurrentStep: React.Dispatch<React.SetStateAction<FormStep>>;
-  newTrip: Trip;
-  setNewTrip: React.Dispatch<React.SetStateAction<Trip>>;
 };
 
-const MilesForm: React.FC<PropTypes> = ({ setCurrentStep, newTrip, setNewTrip }): JSX.Element => {
+const MilesForm: React.FC<PropTypes> = ({ setCurrentStep }): JSX.Element => {
+  const {
+    state: { newTrip },
+    dispatch,
+  } = useContext(TripContext);
+
   const [miles, setMiles] = useState<any>(0);
 
   const formValid = useMemo<boolean>(() => {
-    return parseFloat(miles) > 0
-  }, [miles])
+    return parseFloat(miles) > 0;
+  }, [miles]);
 
   const getTotalDeduction = (): number => {
-    return Math.floor(miles * newTrip.deductionRate) / 100.00
-  }
+    return Math.floor(miles * newTrip.deductionRate) / 100.0;
+  };
 
   const confirmMiles = () => {
-    setNewTrip({ ...newTrip, miles: parseFloat(miles), total: getTotalDeduction()});
-    setCurrentStep(4)
+    dispatch({
+      type: "set_new_trip",
+      payload: {
+        ...newTrip,
+        miles: parseFloat(miles),
+        total: getTotalDeduction(),
+      },
+    });
+    setCurrentStep(4);
   };
 
   return (
@@ -60,7 +71,9 @@ const MilesForm: React.FC<PropTypes> = ({ setCurrentStep, newTrip, setNewTrip })
       <Pressable
         disabled={!formValid}
         onPress={confirmMiles}
-        className={`mt-6 asbolute bottom-0 w-full rounded-full ${formValid ? "bg-indigo-600" : "bg-indigo-300"} py-4 px-4 flex flex-row justify-center items-center mb-4`}
+        className={`mt-6 asbolute bottom-0 w-full rounded-full ${
+          formValid ? "bg-indigo-600" : "bg-indigo-300"
+        } py-4 px-4 flex flex-row justify-center items-center mb-4`}
       >
         <Text className="text-xl font-bold text-white">Next</Text>
       </Pressable>

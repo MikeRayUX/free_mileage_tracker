@@ -1,29 +1,34 @@
-import { useState, useMemo } from "react";
+import { useContext } from "react";
 import { View, Text, Pressable } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { Trip, FormStep, TripClassification } from "../../../../types";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { TripContext } from "../../../../context/TripContext";
+import { uid } from "../../../../helpers/string_helpers";
 
 type PropTypes = {
-  newTrip: Trip;
-  dismissModal: () => void
+  dismissModal: () => void;
 };
 
-const ConfirmForm: React.FC<PropTypes> = ({
-  newTrip,
-  dismissModal
-}): JSX.Element => {
+const ConfirmForm: React.FC<PropTypes> = ({ dismissModal }): JSX.Element => {
+  const {
+    state: { newTrip },
+  } = useContext(TripContext);
 
   const createTrip = async (): Promise<void> => {
     // console.log('newTrip')
     // console.log(newTrip)
     try {
-      let existingTrips = JSON.parse(await AsyncStorage.getItem('trips') || "[]")
-      // console.log('existingTrips:', existingTrips)
-      await AsyncStorage.setItem('trips', JSON.stringify([...existingTrips, newTrip]))
-      dismissModal()
+      let existingTrips = JSON.parse(
+        (await AsyncStorage.getItem("trips")) || "[]"
+      );
+      console.log('existingTrips:', existingTrips)
+      console.log('existingTrips.length:', existingTrips.length)
+      await AsyncStorage.setItem(
+        "trips",
+        JSON.stringify([...existingTrips, {...newTrip, id: uid()}])
+      );
+      dismissModal();
     } catch (e) {
-      console.log('error',e)
+      console.log("error", e);
     }
   };
 
@@ -38,11 +43,21 @@ const ConfirmForm: React.FC<PropTypes> = ({
       <View className="w-full flex flex-col justify-start items-center px-0 ">
         <LineItem name="Date" value={newTrip.formattedDate} />
         <LineItem name="Classification" value={newTrip.classification} />
-        <LineItem name="Mileage Rate" value={`$${newTrip.deductionRate / 100} /mi.`} />
+        <LineItem
+          name="Mileage Rate"
+          value={`$${newTrip.deductionRate / 100} /mi.`}
+        />
         <LineItem name="Miles" value={newTrip.miles} />
         <View className="flex flex-col justify-start items-center py-2">
-          <Text style={{letterSpacing: -2.5}}className="text-5xl font-bold text-green-700 tracking-tighter">${newTrip.total}</Text>
-          <Text className="text-2xl font-bold text-gray-800 tracking-tighter">Total Deduction</Text>
+          <Text
+            style={{ letterSpacing: -2.5 }}
+            className="text-5xl font-bold text-green-700 tracking-tighter"
+          >
+            ${newTrip.total}
+          </Text>
+          <Text className="text-2xl font-bold text-gray-800 tracking-tighter">
+            Total Deduction
+          </Text>
         </View>
       </View>
       {/* heading/value END */}
