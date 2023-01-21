@@ -10,22 +10,17 @@ type PropTypes = {
 
 const ConfirmForm: React.FC<PropTypes> = ({ dismissModal }): JSX.Element => {
   const {
-    state: { newTrip },
+    state: { newTrip }, dispatch
   } = useContext(TripContext);
 
   const createTrip = async (): Promise<void> => {
-    // console.log('newTrip')
-    // console.log(newTrip)
     try {
       let existingTrips = JSON.parse(
         (await AsyncStorage.getItem("trips")) || "[]"
       );
-      console.log('existingTrips:', existingTrips)
-      console.log('existingTrips.length:', existingTrips.length)
-      await AsyncStorage.setItem(
-        "trips",
-        JSON.stringify([...existingTrips, {...newTrip, id: uid()}])
-      );
+      let newTrips = [...existingTrips, {...newTrip, id: uid()}]
+      await AsyncStorage.setItem( "trips", JSON.stringify(newTrips));
+      dispatch({type: 'set_trips', payload: newTrips })
       dismissModal();
     } catch (e) {
       console.log("error", e);
@@ -53,7 +48,7 @@ const ConfirmForm: React.FC<PropTypes> = ({ dismissModal }): JSX.Element => {
             style={{ letterSpacing: -2.5 }}
             className="text-5xl font-bold text-green-700 tracking-tighter"
           >
-            ${newTrip.total}
+            ${newTrip.total.toFixed(2)}
           </Text>
           <Text className="text-2xl font-bold text-gray-800 tracking-tighter">
             Total Deduction

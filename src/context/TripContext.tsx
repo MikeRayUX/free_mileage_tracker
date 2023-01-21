@@ -3,6 +3,7 @@ import { Trip } from "../types";
 
 type State = {
   newTrip: Trip;
+  trips?: Trip[];
 };
 
 type Action = {
@@ -18,6 +19,7 @@ function reducer(state: State, action: Action): State {
       return {
         ...state,
         newTrip: {
+          id: null,
           date: null,
           formattedDate: null,
           classification: null,
@@ -26,6 +28,8 @@ function reducer(state: State, action: Action): State {
           total: null,
         },
       };
+    case "set_trips":
+      return { ...state, trips: action.payload };
     default:
       return state;
   }
@@ -41,6 +45,7 @@ const initialState: State = {
     miles: 0,
     total: null,
   },
+  trips: []
 };
 
 export const TripContext = createContext<{

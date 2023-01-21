@@ -21,7 +21,7 @@ const MilesForm: React.FC<PropTypes> = ({ setCurrentStep }): JSX.Element => {
   }, [miles]);
 
   const getTotalDeduction = (): number => {
-    return Math.floor(miles * newTrip.deductionRate) / 100.0;
+    return (Math.floor(miles * newTrip.deductionRate) / 100.00);
   };
 
   const confirmMiles = () => {

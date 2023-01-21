@@ -3,7 +3,7 @@ import { Picker } from "@react-native-picker/picker";
 import { View, Text, Pressable } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { FormStep, TripClassification } from "../../../../types";
-import { PURPOSE_OPTIONS } from "../../../../contants/constants";
+import { PURPOSE_OPTIONS } from "../../../../constants/constants";
 import { TripContext } from "../../../../context/TripContext";
 
 type PropTypes = {
@@ -15,9 +15,8 @@ const ClassifyForm: React.FC<PropTypes> = ({ setCurrentStep }): JSX.Element => {
     state: { newTrip },
     dispatch,
   } = useContext(TripContext);
-  const [selectedClassification, setSelectedClassification] = useState<string>(
-    PURPOSE_OPTIONS[0]
-  );
+
+  const [selectedClassification, setSelectedClassification] = useState<string>(PURPOSE_OPTIONS[0]);
 
   const currentIcon = useMemo(() => {
     switch (selectedClassification) {
