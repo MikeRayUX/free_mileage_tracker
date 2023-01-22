@@ -1,6 +1,5 @@
 import { useState,useContext } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import ClearTripsButton from "../components/debug/ClearTripsButton"
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TripContext } from "../context/TripContext";
 import ConfirmActionModal from "../components/modals/ConfirmActionModal";
@@ -22,7 +21,7 @@ const SettingsScreen = ({ navigation }) => {
   return (
     <View className="w-full h-full bg-gray-200 p-6 flex flex-col justify-between items-center">
       <Text>SettingsScreen</Text>
-      <DeleteTripsButton onPress={() => setConfirmDelete(true)} />
+      <DeleteTripsButton onPress={() => setConfirmDelete(true)} disabled={trips.length === 0} />
       <ConfirmActionModal
         isVisible={confirmDelete}
         onBackdropPress={() => setConfirmDelete(false)}
@@ -33,12 +32,13 @@ const SettingsScreen = ({ navigation }) => {
   );
 };
 
-const DeleteTripsButton = ({onPress}) => {
+const DeleteTripsButton = ({onPress, disabled}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
+      disabled={disabled}
       className={
-        "w-full py-3 px-5 flex flex-row justify-center items-center rounded-full bg-red-600"
+        `w-full py-3 px-5 flex flex-row justify-center items-center rounded-full ${disabled ? "bg-gray-400" : "bg-red-600"}`
       }
     >
       <Text className="text-base font-bold text-white">Delete All Trips</Text>
