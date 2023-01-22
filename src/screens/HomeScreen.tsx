@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, ScrollView, Keyboard } from "react-native";
-import AppHeader from "../components/AppHeader";
+import AppHeader from "../components/screens/home_screen/AppHeader";
 import NewTripFormModal from "../components/forms/trip/new/NewTripFormModal";
 import { TripContext } from "../context/TripContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";

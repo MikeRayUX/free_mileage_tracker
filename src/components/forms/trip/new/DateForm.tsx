@@ -10,7 +10,7 @@ type PropTypes = {
   setCurrentStep: React.Dispatch<React.SetStateAction<FormStep>>;
 };
 
-const DateForm: React.FC<PropTypes> = ({ setCurrentStep }) => {
+const DateForm: React.FC<PropTypes> = ({ setCurrentStep }): JSX.Element => {
   const {
     state: { newTrip },
     dispatch,

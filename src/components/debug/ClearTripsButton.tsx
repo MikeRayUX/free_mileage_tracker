@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from "react-native";
 import { TripContext } from "../../context/TripContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const ClearTripsButton = () => {
+const ClearTripsButton: React.FC = (): JSX.Element => {
   const { dispatch } = useContext(TripContext);
 
   const clearGlobalTrips = async () => {

@@ -1,9 +1,9 @@
 import { useContext, useMemo } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { TripContext } from "../context/TripContext";
+import { TripContext } from "../../../context/TripContext";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { truncateString } from "../helpers/string_helpers";
-import ClearTripsButton from "./debug/ClearTripsButton";
+import { truncateString } from "../../../helpers/string_helpers";
+import ClearTripsButton from "../../debug/ClearTripsButton";
 
 const debug = false
 const currentYear = new Date().getFullYear();
@@ -43,7 +43,7 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
           style={{ letterSpacing: -0.5 }}
           className="text-center text-xl font-semibold text-gray-900 mb-2 "
         >
-          Total miles this year
+          Total miles this year ({currentYear})
         </Text>
       </View>
 
