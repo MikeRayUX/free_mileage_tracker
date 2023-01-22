@@ -43,7 +43,6 @@ const HomeScreen = () => {
         newTripFormVisible={newTripFormVisible}
       />
 
-      {/* trip list start */}
       <View
         style={{ height: "60%" }}
         className={"w-full flex flex-col justify-start items-center "}
@@ -54,7 +53,6 @@ const HomeScreen = () => {
             : null}
         </ScrollView>
       </View>
-      {/* trip list end */}
     </View>
   );
 }

@@ -4,13 +4,14 @@ import { TripContext } from "../context/TripContext";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { truncateString } from "../helpers/string_helpers";
 import ClearTripsButton from "./debug/ClearTripsButton";
+
+const debug = false
 const currentYear = new Date().getFullYear();
 
 type PropTypes = {
   toggleAddTripForm: () => void;
 };
 
-const debug = false
 const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
   const {
     state: { trips },
@@ -26,7 +27,7 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
 
   return (
     <View
-      style={{ height: "40%" }}
+      style={{ height: "40%"}}
       className={
         "relative shadow-xl bg-white w-full border-b border-gray-200 flex flex-col justify-center items-center"
       }
@@ -74,7 +75,6 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
       </View>
 
       <View className="w-full px-8 flex flex-row justify-center items-center">
-
         {debug ? (<ClearTripsButton />) : null}
         <TouchableOpacity
           onPress={toggleAddTripForm}
