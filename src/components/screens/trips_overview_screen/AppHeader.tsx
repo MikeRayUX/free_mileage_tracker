@@ -61,10 +61,10 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
         <TouchableOpacity
           onPress={toggleAddTripForm}
           className={
-            "py-3 px-8 flex flex-row justify-center items-center rounded-full bg-primary"
+            "py-2 px-8 flex flex-row justify-center items-center rounded-full bg-primary"
           }
         >
-          <FontAwesome5 name="plus" size={24} color="white" />
+          <FontAwesome5 name="plus" size={20} color="white" />
           <Text className="text-xl font-bold text-white pl-4">Add Trip</Text>
         </TouchableOpacity>
       </View>

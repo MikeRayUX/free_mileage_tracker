@@ -16,7 +16,7 @@ const TripItem: React.FC<PropTypes> = ({ trip, onPress }): JSX.Element => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="w-full px-8 py-4 bg-white flex flex-row justify-between items-center border-b border-gray-200"
+      className="w-full px-8 py-2 bg-white flex flex-row justify-between items-center border-b border-gray-400"
     >
       {/* left side */}
       <View className={"w-3/4 flex flex-col justify-center items-start"}>

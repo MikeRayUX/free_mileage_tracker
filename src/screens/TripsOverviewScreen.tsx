@@ -1,13 +1,13 @@
 import { useState, useContext, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, ScrollView, Keyboard } from "react-native";
-import AppHeader from "../components/screens/home_screen/AppHeader";
+import AppHeader from "../components/screens/trips_overview_screen/AppHeader";
 import NewTripFormModal from "../components/forms/trip/new/NewTripFormModal";
 import { TripContext } from "../context/TripContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import TripItem from "../components/screens/home_screen/TripItem";
+import TripItem from "../components/screens/trips_overview_screen/TripItem";
 
-const HomeScreen = ({ navigation }) => {
+const TripsOverviewScreen = ({ navigation }) => {
   const {
     state: { trips },
     dispatch,
@@ -66,4 +66,4 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-export default HomeScreen;
+export default TripsOverviewScreen;

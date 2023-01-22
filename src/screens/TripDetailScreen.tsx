@@ -4,7 +4,7 @@ import { TripContext } from "../context/TripContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Modal from "react-native-modal";
 
-const TripDetail = ({ route, navigation }) => {
+const TripDetailScreen = ({ route, navigation }) => {
   const {
     state: { trips },
     dispatch,
@@ -94,4 +94,4 @@ const LineItem = ({ name, value }): JSX.Element => {
   );
 };
 
-export default TripDetail;
+export default TripDetailScreen;
