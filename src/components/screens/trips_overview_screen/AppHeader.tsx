@@ -38,13 +38,13 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
           style={{ letterSpacing: -2.3 }}
           className="text-center text-5xl font-bold text-primary"
         >
-          {truncateString(totalMiles.toFixed(2).toLocaleString(), 10)}
+          {truncateString(totalMiles.toFixed(2).toLocaleString(), 10)} mi.
         </Text>
         <Text
           style={{ letterSpacing: -0.5 }}
           className="text-center text-xl font-semibold text-gray-900 mb-2 "
         >
-          Miles captured in {currentYear}
+          Captured in {currentYear}
         </Text>
       </View>
 

@@ -10,7 +10,7 @@ type PropTypes = {
 
 const TripItem: React.FC<PropTypes> = ({ trip, onPress }): JSX.Element => {
   let date = trip.formattedDate;
-  let miles = truncateString(trip.miles.toFixed(2), 6);
+  let miles = truncateString(trip.miles.toFixed(1), 6);
   let classification = truncateString(trip.classification, 11);
 
   return (
