@@ -14,11 +14,6 @@ const TripItem: React.FC<PropTypes> = ({ trip, onPress }): JSX.Element => {
   let classification = truncateString(trip.classification, 11);
   let deductionAmount = `$${truncateString(trip.total.toFixed(2), 5)}`;
 
-  const showMoreDetail = () => {
-    console.log("showMoreDetail()");
-    console.log(trip.id);
-  };
-
   return (
     <TouchableOpacity
       onPress={onPress}
