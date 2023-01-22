@@ -44,7 +44,7 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
           style={{ letterSpacing: -0.5 }}
           className="text-center text-xl font-semibold text-gray-900 mb-2 "
         >
-          Total miles this year ({currentYear})
+          Miles captured in {currentYear}
         </Text>
       </View>
 

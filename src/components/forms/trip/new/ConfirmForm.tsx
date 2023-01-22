@@ -10,7 +10,8 @@ type PropTypes = {
 
 const ConfirmForm: React.FC<PropTypes> = ({ dismissModal }): JSX.Element => {
   const {
-    state: { newTrip }, dispatch
+    state: { newTrip },
+    dispatch,
   } = useContext(TripContext);
 
   const createTrip = async (): Promise<void> => {
@@ -18,9 +19,9 @@ const ConfirmForm: React.FC<PropTypes> = ({ dismissModal }): JSX.Element => {
       let existingTrips = JSON.parse(
         (await AsyncStorage.getItem("trips")) || "[]"
       );
-      let newTrips = [...existingTrips, {...newTrip, id: uid()}]
-      await AsyncStorage.setItem( "trips", JSON.stringify(newTrips));
-      dispatch({type: 'set_trips', payload: newTrips })
+      let newTrips = [{ ...newTrip, id: uid() }, ...existingTrips];
+      await AsyncStorage.setItem("trips", JSON.stringify(newTrips));
+      dispatch({ type: "set_trips", payload: newTrips });
       dismissModal();
     } catch (e) {
       console.log("error", e);
