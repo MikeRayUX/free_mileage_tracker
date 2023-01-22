@@ -32,6 +32,10 @@ const TripsOverviewScreen = ({ navigation }) => {
     } catch (e) {}
   };
 
+  const onTripItemPress = (id: string): void => {
+    navigation.navigate("TripDetailScreen", { id })
+  }
+
   return (
     <View className="w-full flex flex-col justify-start items-center">
       <StatusBar />
@@ -54,9 +58,7 @@ const TripsOverviewScreen = ({ navigation }) => {
               <TripItem
                 key={trip.id}
                 trip={trip}
-                onPress={() =>
-                  navigation.navigate("TripDetail", { id: trip.id })
-                }
+                onPress={() => onTripItemPress(trip.id)}
               />
             ))}
           </ScrollView>

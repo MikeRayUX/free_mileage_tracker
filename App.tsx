@@ -26,7 +26,7 @@ export default function App() {
           />
           <BottomTab.Screen
             name="Settings"
-            component={SettingsScreen}
+            component={Settings}
             options={{
               headerShown: false,
               tabBarIcon: ({focused}) => (
@@ -51,6 +51,18 @@ const Home = () => {
       <Stack.Screen
         name="TripDetailScreen"
         component={TripDetailScreen}
+        options={{ title: "Trip Detail" }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const Settings = () => {
+  return (
+    <Stack.Navigator initialRouteName="Settings">
+      <Stack.Screen
+        name="SettingsOverview"
+        component={SettingsScreen}
         options={{ title: "Trip Detail" }}
       />
     </Stack.Navigator>
