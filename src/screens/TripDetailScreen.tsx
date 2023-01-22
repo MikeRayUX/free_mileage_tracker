@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { TripContext } from "../context/TripContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Modal from "react-native-modal";
+import ConfirmActionModal from "../components/modals/ConfirmActionModal";
 
 const TripDetailScreen = ({ route, navigation }) => {
   const {
@@ -10,7 +10,7 @@ const TripDetailScreen = ({ route, navigation }) => {
     dispatch,
   } = useContext(TripContext);
 
-  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
 
   const [trip] = trips.filter((item) => item.id === route.params.id);
 
@@ -20,7 +20,7 @@ const TripDetailScreen = ({ route, navigation }) => {
     dispatch({ type: "set_trips", payload: newTrips });
     await AsyncStorage.setItem("trips", JSON.stringify(newTrips));
     setConfirmDelete(false);
-    navigation.navigate("Home");
+    navigation.navigate("TripsOverviewScreen");
   };
 
   return (
@@ -50,31 +50,12 @@ const TripDetailScreen = ({ route, navigation }) => {
             <Text className="text-xl font-bold text-white">Delete Trip</Text>
           </Pressable>
 
-          <Modal
+          <ConfirmActionModal
             isVisible={confirmDelete}
             onBackdropPress={() => setConfirmDelete(false)}
-            avoidKeyboard={false}
-          >
-            <View className={"flex rounded-xl bg-white py-8 px-4"}>
-              <Text className="text-xl font-bold text-gray-900 mb-4 text-center">
-                Are you sure?
-              </Text>
-              <Pressable
-                onPress={() => setConfirmDelete(false)}
-                className="my-3 w-full border border-gray-900 bg-white rounded-full py-4 px-4 flex flex-row justify-center items-center mb-4"
-              >
-                <Text className="text-xl font-bold text-gray-900">No</Text>
-              </Pressable>
-              <Pressable
-                onPress={deleteTrip}
-                className="my-3 w-full rounded-full bg-red-600 py-4 px-4 flex flex-row justify-center items-center mb-4"
-              >
-                <Text className="text-xl font-bold text-white">
-                  Yes, Delete
-                </Text>
-              </Pressable>
-            </View>
-          </Modal>
+            onConfirm={deleteTrip}
+            confirmText="Are you sure?"
+          />
         </View>
       ) : null}
     </>

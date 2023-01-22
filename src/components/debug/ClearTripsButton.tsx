@@ -14,7 +14,7 @@ const ClearTripsButton: React.FC = (): JSX.Element => {
     <TouchableOpacity
       onPress={clearGlobalTrips}
       className={
-        "py-2 px-5 flex flex-row justify-center items-center rounded-full bg-red-600"
+        "w-full py-2 px-5 flex flex-row justify-center items-center rounded-full bg-red-600"
       }
     >
       <Text className="text-base font-bold text-white">Clear Trips</Text>

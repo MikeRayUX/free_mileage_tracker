@@ -63,7 +63,7 @@ const Settings = () => {
       <Stack.Screen
         name="SettingsOverview"
         component={SettingsScreen}
-        options={{ title: "Trip Detail" }}
+        options={{ title: "Settings" }}
       />
     </Stack.Navigator>
   );
