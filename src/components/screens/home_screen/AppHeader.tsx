@@ -4,6 +4,7 @@ import { TripContext } from "../../../context/TripContext";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { truncateString } from "../../../helpers/string_helpers";
 import ClearTripsButton from "../../debug/ClearTripsButton";
+import TripCount from "./TripCount";
 
 const debug = false
 const currentYear = new Date().getFullYear();
@@ -48,30 +49,11 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
       </View>
 
       <View
-        className={"flex flex-row justify-center items-center space-x-8 mb-4"}
+        className={"flex flex-row justify-center items-center mb-4"}
       >
-        <View className={"flex flex-col justify-start items-start"}>
-          <Text
-            style={{ marginBottom: -8 }}
-            className={"text-lg font-semibold text-primary leading-none"}
-          >
-            131 Trips
-          </Text>
-          <Text className={"text-lg font-bold text-gray-900 leading-none"}>
-            This year
-          </Text>
-        </View>
-        <View className={"flex flex-col justify-start items-start  "}>
-          <Text
-            style={{ marginBottom: -8 }}
-            className={"text-lg font-semibold text-primary leading-none mb-0"}
-          >
-            14 Trips
-          </Text>
-          <Text className={"text-lg font-bold text-gray-900 leading-none mb-0"}>
-            This month
-          </Text>
-        </View>
+
+        <TripCount frequency={"ytd"}/>
+        <TripCount frequency={"mtd"}/>
       </View>
 
       <View className="w-full px-8 flex flex-row justify-center items-center">

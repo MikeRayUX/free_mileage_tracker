@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from "react-native";
 import { useState, useMemo, useContext } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { getFormattedDate } from "../../../../helpers/date";
+import { getFormattedDate } from "../../../../helpers/date_helpers";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { FormStep } from "../../../../types";
 import { TripContext } from "../../../../context/TripContext";

@@ -31,3 +31,17 @@ export const getFormattedDate = (date: Date): string => {
 
   return mm + "/" + dd + "/" + yyyy;
 };
+
+export const getCurrentYear = ():string => {
+  return new Date().getFullYear().toString();
+}
+
+export const getCurrentMonth = (): string => {
+  let month = new Date().getMonth() + 1
+
+  if (month < 10) {
+    return `0${month}`
+  } else {
+    return month.toString()
+  }
+};
