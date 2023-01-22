@@ -69,7 +69,7 @@ const DateForm: React.FC<PropTypes> = ({ setCurrentStep }): JSX.Element => {
         {/* next button START */}
         <Pressable
           onPress={() => confirmDate()}
-          className="mt-6 asbolute bottom-0 w-full rounded-full bg-indigo-600 py-4 px-4 flex flex-row justify-center items-center mb-4"
+          className="mt-6 asbolute bottom-0 w-full rounded-full bg-primary py-4 px-4 flex flex-row justify-center items-center mb-4"
         >
           <Text className="text-xl font-bold text-white">Next</Text>
         </Pressable>

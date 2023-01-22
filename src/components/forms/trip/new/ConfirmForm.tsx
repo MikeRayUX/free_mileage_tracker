@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { View, Text, Pressable } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TripContext } from "../../../../context/TripContext";
@@ -33,26 +34,24 @@ const ConfirmForm: React.FC<PropTypes> = ({ dismissModal }): JSX.Element => {
       {/* heading/value START */}
       <View className="w-full p-4">
         <Text className="text-2xl font-bold mb-3 text-center tracking-tightest">
-          Finalize Trip
+          Confirm Trip
         </Text>
       </View>
+        <View className={"flex flex-row justify-center items-center "}>
+          <FontAwesome5 name="road" size={64} color="#6854EF" />
+        </View>
       <View className="w-full flex flex-col justify-start items-center px-0 ">
         <LineItem name="Date" value={newTrip.formattedDate} />
         <LineItem name="Classification" value={newTrip.classification} />
-        <LineItem
-          name="Mileage Rate"
-          value={`$${newTrip.deductionRate / 100} /mi.`}
-        />
-        <LineItem name="Miles" value={newTrip.miles} />
         <View className="flex flex-col justify-start items-center py-2">
           <Text
             style={{ letterSpacing: -2.5 }}
-            className="text-5xl font-bold text-green-700 tracking-tighter"
+            className="text-5xl font-bold text-primary tracking-tighter"
           >
-            ${newTrip.total.toFixed(2)}
+            {newTrip.miles.toFixed(2)}
           </Text>
           <Text className="text-2xl font-bold text-gray-800 tracking-tighter">
-            Total Deduction
+            Total Miles
           </Text>
         </View>
       </View>
@@ -61,7 +60,7 @@ const ConfirmForm: React.FC<PropTypes> = ({ dismissModal }): JSX.Element => {
       {/* next button START */}
       <Pressable
         onPress={() => createTrip()}
-        className="mt-6 asbolute bottom-0 w-full rounded-full bg-indigo-600 py-4 px-4 flex flex-row justify-center items-center mb-4"
+        className="mt-6 asbolute bottom-0 w-full rounded-full bg-primary py-4 px-4 flex flex-row justify-center items-center mb-4"
       >
         <Text className="text-xl font-bold text-white">Save Trip</Text>
       </Pressable>

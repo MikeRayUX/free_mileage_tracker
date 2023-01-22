@@ -12,7 +12,6 @@ const TripItem: React.FC<PropTypes> = ({ trip, onPress }): JSX.Element => {
   let date = trip.formattedDate;
   let miles = truncateString(trip.miles.toFixed(2), 6);
   let classification = truncateString(trip.classification, 11);
-  let deductionAmount = `$${truncateString(trip.total.toFixed(2), 5)}`;
 
   return (
     <TouchableOpacity
@@ -45,6 +44,20 @@ const TripItem: React.FC<PropTypes> = ({ trip, onPress }): JSX.Element => {
               style={{ marginBottom: -6 }}
               className={"font-medium text-primary text-base leading-none"}
             >
+              {date}
+            </Text>
+            <Text
+              style={{ marginBottom: 3 }}
+              className={"text-base font-semibold text-gray-700 leading-none"}
+            >
+              Date
+            </Text>
+          </View>
+          <View className={"flex flex-col justify-start items-start"}>
+            <Text
+              style={{ marginBottom: -6 }}
+              className={"font-medium text-primary text-base leading-none"}
+            >
               {classification}
             </Text>
             <Text
@@ -54,30 +67,7 @@ const TripItem: React.FC<PropTypes> = ({ trip, onPress }): JSX.Element => {
               Classification
             </Text>
           </View>
-          <View className={"flex flex-col justify-start items-start"}>
-            <Text
-              style={{ marginBottom: -6 }}
-              className={"font-medium text-primary text-base leading-none"}
-            >
-              {deductionAmount}
-            </Text>
-            <Text
-              style={{ marginBottom: 3 }}
-              className={"text-base font-semibold text-gray-700 leading-none"}
-            >
-              Deduction
-            </Text>
-          </View>
         </View>
-
-          <View className="flex flex-row justify-start items-end">
-            <Text
-              style={{ letterSpacing: 0 }}
-              className={"font-bold text-gray-900 text-xl leading-none mr-1"}
-            >
-              {date}
-            </Text>
-          </View>
       </View>
 
       {/* right side */}

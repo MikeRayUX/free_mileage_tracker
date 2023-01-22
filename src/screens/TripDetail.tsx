@@ -30,20 +30,15 @@ const TripDetail = ({ route, navigation }) => {
           <View className="w-full flex flex-col justify-start items-center px-0 ">
             <LineItem name="Date" value={trip.formattedDate} />
             <LineItem name="Classification" value={trip.classification} />
-            <LineItem
-              name="Mileage Rate"
-              value={`$${trip.deductionRate / 100} /mi.`}
-            />
-            <LineItem name="Miles" value={trip.miles} />
             <View className="flex flex-col justify-start items-center py-2">
               <Text
                 style={{ letterSpacing: -2.5 }}
-                className="text-5xl font-bold text-green-700 tracking-tighter"
+                className="text-5xl font-bold text-primary tracking-tighter"
               >
-                ${trip.total.toFixed(2)}
+                ${trip.miles.toFixed(2)}
               </Text>
               <Text className="text-2xl font-bold text-gray-800 tracking-tighter">
-                Total Deduction
+                Total Miles
               </Text>
             </View>
           </View>

@@ -23,9 +23,7 @@ function reducer(state: State, action: Action): State {
           date: null,
           formattedDate: null,
           classification: null,
-          deductionRate: null,
           miles: 0,
-          total: null,
         },
       };
     case "set_trips":
@@ -41,9 +39,7 @@ const initialState: State = {
     date: null,
     formattedDate: null,
     classification: null,
-    deductionRate: null,
     miles: 0,
-    total: null,
   },
   trips: []
 };
