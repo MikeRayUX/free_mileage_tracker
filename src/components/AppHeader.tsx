@@ -29,7 +29,7 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
     <View
       style={{ height: "40%"}}
       className={
-        "relative shadow-xl bg-white w-full border-b border-gray-200 flex flex-col justify-center items-center"
+        "relative shadow bg-white w-full border-b border-gray-400 flex flex-col justify-center items-center"
       }
     >
       <View className={""}>

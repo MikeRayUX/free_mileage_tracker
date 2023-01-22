@@ -1,12 +1,19 @@
 import { TripProvider } from "./src/context/TripContext";
 import HomeScreen from "./src/screens/HomeScreen";
+import TripDetail from "./src/screens/TripDetail";
 import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <TripProvider>
-        <HomeScreen />
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} options={{title: null}} />
+        <Stack.Screen name="TripDetail" component={TripDetail} />
+      </Stack.Navigator>
       </TripProvider>
     </NavigationContainer>
   );

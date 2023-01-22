@@ -54,16 +54,15 @@ const DateForm: React.FC<PropTypes> = ({ setCurrentStep }) => {
       <View className="w-full">
         <View style={{ height: 200 }}>
           <DateTimePicker
-            testID="dateTimePicker"
             value={selectedDate}
-            maximumDate={today}
             minimumDate={beginningOfYear}
-            is24Hour={true}
+            maximumDate={today}
             mode={"date"}
             display={"spinner"}
             onChange={(_event: any, selectedDate: Date) =>
               setSelectedDate(selectedDate)
             }
+            textColor="black"
             className={"py-2 w-full"}
           />
         </View>

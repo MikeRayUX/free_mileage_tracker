@@ -13,6 +13,7 @@
     "@react-native-community/datetimepicker": "6.5.2",
     "@react-native-picker/picker": "^2.4.8",
     "@react-navigation/native": "^6.1.2",
+    "@react-navigation/native-stack": "^6.9.8",
     "@types/react": "~18.0.24",
     "@types/react-native": "~0.70.6",
     "expo": "~47.0.12",

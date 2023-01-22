@@ -1,13 +1,13 @@
-import { useState, useContext, useEffect} from "react";
+import { useState, useContext, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { View, ScrollView, Keyboard} from "react-native";
+import { View, ScrollView, Keyboard } from "react-native";
 import AppHeader from "../components/AppHeader";
 import NewTripFormModal from "../components/forms/trip/new/NewTripFormModal";
 import { TripContext } from "../context/TripContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import TripItem from "../components/screens/home_screen/TripItem";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const {
     state: { trips },
     dispatch,
@@ -29,14 +29,13 @@ const HomeScreen = () => {
     try {
       let trips = JSON.parse((await AsyncStorage.getItem("trips")) || "[]");
       dispatch({ type: "set_trips", payload: trips });
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   return (
     <View className="w-full flex flex-col justify-start items-center">
       <StatusBar />
-      <AppHeader toggleAddTripForm={toggleAddTripForm}/>
+      <AppHeader toggleAddTripForm={toggleAddTripForm} />
 
       <NewTripFormModal
         setNewTripFormVisible={setNewTripFormVisible}
@@ -45,16 +44,26 @@ const HomeScreen = () => {
 
       <View
         style={{ height: "60%" }}
-        className={"w-full flex flex-col justify-start items-center "}
+        className={
+          "w-full flex flex-col justify-start items-center bg-gray-200"
+        }
       >
-        <ScrollView>
-          {trips.length
-            ? trips.map((trip) => <TripItem key={trip.id} trip={trip} />)
-            : null}
-        </ScrollView>
+        {trips.length ? (
+          <ScrollView>
+            {trips.map((trip) => (
+              <TripItem
+                key={trip.id}
+                trip={trip}
+                onPress={() =>
+                  navigation.navigate("TripDetail", { id: trip.id })
+                }
+              />
+            ))}
+          </ScrollView>
+        ) : null}
       </View>
     </View>
   );
-}
+};
 
-export default HomeScreen
+export default HomeScreen;

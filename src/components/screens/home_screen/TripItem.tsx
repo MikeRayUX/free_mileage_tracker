@@ -1,15 +1,16 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Trip } from "../../../types";
 import { truncateString } from "../../../helpers/string_helpers";
 import { FontAwesome5 } from '@expo/vector-icons';
 
 type PropTypes = {
   trip: Trip;
+  onPress: () => void
 };
 
-const TripItem = ({ trip }) => {
+const TripItem: React.FC<PropTypes> = ({ trip, onPress }): JSX.Element => {
   let date = trip.formattedDate;
-  let miles = truncateString(trip.miles.toFixed(2), 5);
+  let miles = truncateString(trip.miles.toFixed(2), 6);
   let classification = truncateString(trip.classification, 11);
   let deductionAmount = `$${truncateString(trip.total.toFixed(2), 5)}`;
 
@@ -18,8 +19,8 @@ const TripItem = ({ trip }) => {
     console.log(trip.id)
   }
   return (
-    <Pressable 
-      onPress={showMoreDetail}
+    <TouchableOpacity 
+      onPress={onPress}
       className="w-full px-8 py-4 bg-white flex flex-row justify-between items-center border-b border-gray-200">
       {/* left side */}
       <View className={"w-3/4 flex flex-col justify-center items-start"}>
@@ -28,7 +29,7 @@ const TripItem = ({ trip }) => {
             {miles}
           </Text>
           <Text
-            style={{ marginBottom: 3 }}
+            style={{ marginBottom: 0 }}
             className={"text-lg font-medium text-gray-900 leading-none"}
           >
             mi.
@@ -70,7 +71,7 @@ const TripItem = ({ trip }) => {
       <View className={"w-1/4 flex flex-col justify-center items-end"}>
         <FontAwesome5 name="chevron-right" size={24} color="black" />
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
