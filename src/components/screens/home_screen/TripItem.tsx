@@ -44,13 +44,13 @@ const TripItem: React.FC<PropTypes> = ({ trip, onPress }): JSX.Element => {
               style={{ marginBottom: -6 }}
               className={"font-medium text-primary text-base leading-none"}
             >
-              {date}
+              Date
             </Text>
             <Text
               style={{ marginBottom: 3 }}
               className={"text-base font-semibold text-gray-700 leading-none"}
             >
-              Date
+              {date}
             </Text>
           </View>
           <View className={"flex flex-col justify-start items-start"}>
@@ -58,13 +58,13 @@ const TripItem: React.FC<PropTypes> = ({ trip, onPress }): JSX.Element => {
               style={{ marginBottom: -6 }}
               className={"font-medium text-primary text-base leading-none"}
             >
-              {classification}
+              Classification
             </Text>
             <Text
               style={{ marginBottom: 3 }}
               className={"text-base font-semibold text-gray-700 leading-none"}
             >
-              Classification
+              {classification}
             </Text>
           </View>
         </View>
