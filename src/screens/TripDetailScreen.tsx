@@ -35,7 +35,7 @@ const TripDetailScreen = ({ route, navigation }) => {
                 style={{ letterSpacing: -2.5 }}
                 className="text-5xl font-bold text-primary tracking-tighter"
               >
-                ${trip.miles.toFixed(2)}
+                {trip.miles.toFixed(1)}
               </Text>
               <Text className="text-2xl font-bold text-gray-800 tracking-tighter">
                 Total Miles

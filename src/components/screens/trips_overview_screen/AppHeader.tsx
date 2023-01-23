@@ -38,7 +38,7 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
           style={{ letterSpacing: -2.3 }}
           className="text-center text-5xl font-bold text-primary"
         >
-          {truncateString(totalMiles.toFixed(2).toLocaleString(), 10)} mi.
+          {truncateString(totalMiles.toFixed(1).toLocaleString(), 10)} mi.
         </Text>
         <Text
           style={{ letterSpacing: -0.5 }}
