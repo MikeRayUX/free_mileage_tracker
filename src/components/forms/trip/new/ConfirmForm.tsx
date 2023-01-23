@@ -48,7 +48,7 @@ const ConfirmForm: React.FC<PropTypes> = ({ dismissModal }): JSX.Element => {
             style={{ letterSpacing: -2.5 }}
             className="text-5xl font-bold text-primary tracking-tighter"
           >
-            {newTrip.miles.toFixed(2)}
+            {newTrip.miles.toFixed(1)}
           </Text>
           <Text className="text-2xl font-bold text-gray-800 tracking-tighter">
             Total Miles
