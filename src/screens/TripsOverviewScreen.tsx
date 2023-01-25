@@ -37,7 +37,7 @@ const TripsOverviewScreen = ({ navigation }) => {
   }
 
   return (
-    <View className="w-full flex flex-col justify-start items-center">
+    <View className="w-full flex flex-col justify-start items-center bg-white">
       <StatusBar />
       <AppHeader toggleAddTripForm={toggleAddTripForm} />
 
@@ -49,7 +49,7 @@ const TripsOverviewScreen = ({ navigation }) => {
       <View
         style={{ height: "60%" }}
         className={
-          "w-full flex flex-col justify-start items-center bg-gray-200"
+          "w-full flex flex-col justify-start items-center"
         }
       >
         {trips.length ? (
