@@ -28,7 +28,7 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
 
   return (
     <View
-      style={{ height: "40%" }}
+      style={{ height: "35%" }}
       className={
         "relative shadow white w-full flex flex-col justify-center items-center px-4"
       }
@@ -56,8 +56,8 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
         <TouchableOpacity
           onPress={toggleAddTripForm}
           className={
-            "py-3 px-12 flex flex-row justify-center items-center rounded-full bg-indigo-600"
-          }
+          "py-3 px-12 flex flex-row justify-center items-center rounded-full bg-indigo-600"
+        }
         >
           <Text className="text-xl font-semibold text-white pr-4 tracking-wide">
             Add Trip

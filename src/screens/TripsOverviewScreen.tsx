@@ -47,8 +47,8 @@ const TripsOverviewScreen = ({ navigation }) => {
       />
 
       <View
-        style={{ height: "60%" }}
-        className={ "w-full bg-white px-4" }
+        style={{ height: "65%" }}
+        className={ "w-full bg-white px-4 pb-10" }
       >
         <Text className="text-lg font-bold text-gray-900 mb-4 text-left">Trips</Text>
         {trips.length ? (
