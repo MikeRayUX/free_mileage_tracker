@@ -37,7 +37,7 @@ const TripsOverviewScreen = ({ navigation }) => {
   }
 
   return (
-    <View className="w-full flex flex-col justify-start items-center bg-white">
+    <View className="w-full flex flex-col justify-start items-center bg-white px-4">
       <StatusBar />
       <AppHeader toggleAddTripForm={toggleAddTripForm} />
 

@@ -53,12 +53,12 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
         <TripCount frequency={"mtd"} />
       </View>
 
-      <View className="w-full px-8 flex flex-row justify-center items-center">
+      <View className="w-full flex flex-row justify-center items-center">
         {debug ? <ClearTripsButton /> : null}
         <TouchableOpacity
           onPress={toggleAddTripForm}
           className={
-            "py-4 px-20 w-full flex flex-row justify-center items-center rounded-3xl bg-gray-900"
+            "py-4 w-full flex flex-row justify-center items-center rounded-3xl bg-gray-900"
           }
         >
           <Text className="text-2xl font-semibold text-white pr-4 tracking-wide">
