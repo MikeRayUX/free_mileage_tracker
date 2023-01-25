@@ -34,7 +34,10 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
       }
     >
       <View className={""}>
-        <Text style={{marginBottom: -5}}className="text-center text-5xl font-black text-gray-800" >
+        <Text
+          style={{ marginBottom: -5 }}
+          className="text-center text-5xl font-black text-gray-800"
+        >
           {truncateString(totalMiles.toFixed(1).toLocaleString(), 10)} mi.
         </Text>
 
@@ -56,8 +59,8 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
         <TouchableOpacity
           onPress={toggleAddTripForm}
           className={
-          "py-3 px-12 flex flex-row justify-center items-center rounded-full bg-indigo-600"
-        }
+            "py-3 px-12 flex flex-row justify-center items-center rounded-full bg-indigo-600"
+          }
         >
           <Text className="text-xl font-semibold text-white pr-4 tracking-wide">
             Add Trip
