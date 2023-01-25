@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { View, ScrollView, Keyboard } from "react-native";
+import { View, ScrollView, Keyboard, Text } from "react-native";
 import AppHeader from "../components/screens/trips_overview_screen/AppHeader";
 import NewTripFormModal from "../components/forms/trip/new/NewTripFormModal";
 import { TripContext } from "../context/TripContext";
@@ -37,7 +37,7 @@ const TripsOverviewScreen = ({ navigation }) => {
   }
 
   return (
-    <View className="w-full flex flex-col justify-start items-center bg-white px-4">
+    <View className="w-full flex flex-col justify-start items-center bg-white">
       <StatusBar />
       <AppHeader toggleAddTripForm={toggleAddTripForm} />
 
@@ -48,10 +48,9 @@ const TripsOverviewScreen = ({ navigation }) => {
 
       <View
         style={{ height: "60%" }}
-        className={
-          "w-full flex flex-col justify-start items-center"
-        }
+        className={ "w-full bg-white px-4" }
       >
+        <Text className="text-lg font-bold text-gray-900 mb-4 text-left">Trips</Text>
         {trips.length ? (
           <ScrollView>
             {trips.map((trip) => (

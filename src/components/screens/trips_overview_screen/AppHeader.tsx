@@ -28,23 +28,21 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
 
   return (
     <View
-      style={{ height: "45%" }}
+      style={{ height: "40%" }}
       className={
-        "relative shadow white w-full border-b border-gray-400 flex flex-col justify-center items-center"
+        "relative shadow white w-full flex flex-col justify-center items-center px-4"
       }
     >
       <View className={""}>
+        <Text style={{marginBottom: -5}}className="text-center text-5xl font-black text-gray-800" >
+          {truncateString(totalMiles.toFixed(1).toLocaleString(), 10)} mi.
+        </Text>
+
         <Text
           style={{ letterSpacing: -0.5 }}
-          className="text-center text-lg font-bold text-gray-800 mb-4 "
+          className="text-center text-lg font-bold text-gray-800 mb-2"
         >
-          Miles captured in {currentYear}
-        </Text>
-        <Text
-          style={{}}
-          className="text-center text-6xl font-bold text-gray-800"
-        >
-          {truncateString(totalMiles.toFixed(1).toLocaleString(), 10)} mi.
+          Captured in {currentYear}
         </Text>
       </View>
 
@@ -58,13 +56,13 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
         <TouchableOpacity
           onPress={toggleAddTripForm}
           className={
-            "py-4 w-full flex flex-row justify-center items-center rounded-3xl bg-gray-900"
+            "py-3 px-12 flex flex-row justify-center items-center rounded-full bg-indigo-600"
           }
         >
-          <Text className="text-2xl font-semibold text-white pr-4 tracking-wide">
+          <Text className="text-xl font-semibold text-white pr-4 tracking-wide">
             Add Trip
           </Text>
-          <FontAwesome5 name="road" size={36} color="white" />
+          <FontAwesome5 name="road" size={28} color="white" />
         </TouchableOpacity>
       </View>
     </View>

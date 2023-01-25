@@ -46,7 +46,7 @@ const Home = () => {
       <Stack.Screen
         name="TripsOverviewScreen"
         component={TripsOverviewScreen}
-        options={{ headerShown: false, title: null }}
+        options={{ headerShown: true, title: null}}
       />
       <Stack.Screen
         name="TripDetailScreen"
