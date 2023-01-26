@@ -21,9 +21,13 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
   const totalMiles = useMemo(() => {
     if (!trips.length) return 0.0;
 
-    return trips.reduce((acc, trip) => {
-      return acc + trip.miles;
-    }, 0);
+    return (
+      Math.floor(
+        trips.reduce((acc, next) => {
+          return acc + next.miles;
+        }, 0) * 10.0
+      ) / 10.0
+    );
   }, [trips]);
 
   return (
@@ -38,7 +42,7 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
           style={{ marginBottom: -5 }}
           className="text-center text-5xl font-black text-gray-800"
         >
-          {truncateString(totalMiles.toFixed(1).toLocaleString(), 10)} mi.
+          {totalMiles.toFixed(1)} mi.
         </Text>
 
         <Text
