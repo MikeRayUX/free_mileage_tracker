@@ -1,7 +1,7 @@
-# Free Mileage Tracker for Independent Contractors
-![Free Mileage Tracker for Independent Contractors](assets/readme_img.png)
+# Zero Mileage Tracker for Independent Contractors
+![Zero Mileage Tracker for Independent Contractors](assets/readme_img.png)
 
-#### Free Mileage Tracker for Independent Contractors is a `React Native` project that uses a `TypeScript` configuration.
+#### Zero Mileage Tracker for Independent Contractors is a `React Native` Expo Project with a `TypeScript` configuration.
 
 ## Demo
 
