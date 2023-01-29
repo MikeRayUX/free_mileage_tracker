@@ -1,11 +1,10 @@
 # Zero Mileage Tracker for Independent Contractors
-![Zero Mileage Tracker for Independent Contractors](assets/readme_img.png)
 
 #### Zero Mileage Tracker for Independent Contractors is a `React Native` Expo Project with a `TypeScript` configuration.
 
 ## Demo
 
-https://user-images.githubusercontent.com/6802326/214027971-91c2a4cb-1b53-4231-9217-f9b7dc96422a.mp4
+https://user-images.githubusercontent.com/6802326/215323617-6486739c-84ad-4cc5-b5bb-7f68935a27c1.mp4
 
 Currently, there is only support for building to `iOS`. Expanding the `csv` share feature for building to `android` is planned for a future release.
 
