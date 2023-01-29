@@ -40,12 +40,12 @@ const TripCount: React.FC<PropTypes> = ({ frequency }): JSX.Element => {
   return (
     <View className={"flex flex-col justify-start items-start mx-6"}>
       <Text
-        style={{ marginBottom: -8 }}
-        className={"text-lg font-semibold text-primary leading-none"}
+        style={{ marginBottom: -8, letterSpacing: -1 }}
+        className={"text-lg font-semibold text-indigo-600 leading-none"}
       >
         {tripsXTD} Trips
       </Text>
-      <Text className={"text-lg font-bold text-gray-900 leading-none"}>
+      <Text style={{letterSpacing: -0.5 }} className={"text-lg font-bold text-gray-900 leading-none"}>
         This {readableFrequency}
       </Text>
     </View>

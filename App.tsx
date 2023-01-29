@@ -13,14 +13,36 @@ export default function App() {
   return (
     <TripProvider>
       <NavigationContainer>
-        <BottomTab.Navigator>
+        <BottomTab.Navigator
+          screenOptions={{
+            tabBarStyle: {
+              bottom: 20,
+              left: 20,
+              right: 20,
+              elevation: 0,
+              paddingTop: 10,
+              paddingBottom: 10,
+              borderRadius: "20%",
+              position: "absolute",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: 'black',
+              height: 65
+            },
+          }}
+        >
           <BottomTab.Screen
             name="Home"
             component={Home}
             options={{
               headerShown: false,
-              tabBarIcon: ({focused}) => (
-                <FontAwesome5 name="home" size={24} color={`${focused ? "blue" : "gray"}`} />
+              tabBarShowLabel: false,
+              tabBarIcon: ({ focused }) => (
+                <FontAwesome5
+                  name="home"
+                  size={26}
+                  color={`${focused ? "white" : "gray"}`}
+                />
               ),
             }}
           />
@@ -29,8 +51,13 @@ export default function App() {
             component={Settings}
             options={{
               headerShown: false,
-              tabBarIcon: ({focused}) => (
-                <FontAwesome5 name="cog" size={24} color={`${focused ? "blue" : "gray"}`} />
+              tabBarShowLabel: false,
+              tabBarIcon: ({ focused }) => (
+                <FontAwesome5
+                  name="cog"
+                  size={26}
+                  color={`${focused ? "white" : "gray"}`}
+                />
               ),
             }}
           />
@@ -46,7 +73,7 @@ const Home = () => {
       <Stack.Screen
         name="TripsOverviewScreen"
         component={TripsOverviewScreen}
-        options={{ headerShown: false, title: null }}
+        options={{ headerShown: true, title: null }}
       />
       <Stack.Screen
         name="TripDetailScreen"

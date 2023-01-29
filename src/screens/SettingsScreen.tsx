@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TripContext } from "../context/TripContext";
 import ConfirmActionModal from "../components/modals/ConfirmActionModal";
 //csv
-import { jsonToCSV} from "react-native-csv";
+import { jsonToCSV } from "react-native-csv";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import { getCurrentYear } from "../helpers/date_helpers";
@@ -36,13 +36,19 @@ const SettingsScreen = () => {
         Date: trip.formattedDate,
         Classification: trip.classification,
         Miles: trip.miles,
-      })
+      });
 
-      if(idx == trips.length - 1) {
+      if (idx == trips.length - 1) {
         jsonData.push({
           Date: "Total Miles",
-          Classification: (Math.floor(trips.reduce((acc, next) => { return acc + next.miles },0) * 10.0 ) / 10.0).toFixed(1),
-          Miles: ""
+          Classification: (
+            Math.floor(
+              trips.reduce((acc, next) => {
+                return acc + next.miles;
+              }, 0) * 10.0
+            ) / 10.0
+          ).toFixed(1),
+          Miles: "",
         });
       }
     });
@@ -61,7 +67,7 @@ const SettingsScreen = () => {
   };
 
   return (
-    <View className="w-full h-full bg-gray-200 p-6 flex flex-col justify-end items-center">
+    <View className="w-full h-full bg-gray-200 p-6 flex flex-col justify-end items-center pb-24">
       <ExportToCSVButton onPress={exportToCSV} disabled={trips.length === 0} />
       <DeleteTripsButton
         onPress={() => setConfirmDelete(true)}

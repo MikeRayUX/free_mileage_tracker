@@ -6,7 +6,7 @@ import { truncateString } from "../../../helpers/string_helpers";
 import ClearTripsButton from "../../debug/ClearTripsButton";
 import TripCount from "./TripCount";
 
-const debug = false
+const debug = false;
 const currentYear = new Date().getFullYear();
 
 type PropTypes = {
@@ -21,51 +21,55 @@ const AppHeader: React.FC<PropTypes> = ({ toggleAddTripForm }): JSX.Element => {
   const totalMiles = useMemo(() => {
     if (!trips.length) return 0.0;
 
-    return trips.reduce((acc, trip) => {
-      return acc + trip.miles;
-    }, 0);
+    return (
+      Math.floor(
+        trips.reduce((acc, next) => {
+          return acc + next.miles;
+        }, 0) * 10.0
+      ) / 10.0
+    );
   }, [trips]);
 
   return (
     <View
-      style={{ height: "40%"}}
+      style={{ height: "35%" }}
       className={
-        "relative shadow bg-white w-full border-b border-gray-400 flex flex-col justify-center items-center"
+        "relative shadow white w-full flex flex-col justify-center items-center px-4"
       }
     >
       <View className={""}>
         <Text
-          style={{ letterSpacing: -2.3 }}
-          className="text-center text-5xl font-bold text-primary"
+          style={{ marginBottom: -5 }}
+          className="text-center text-5xl font-black text-gray-800"
         >
-          {truncateString(totalMiles.toFixed(1).toLocaleString(), 10)} mi.
+          {totalMiles.toFixed(1)} mi.
         </Text>
+
         <Text
           style={{ letterSpacing: -0.5 }}
-          className="text-center text-xl font-semibold text-gray-900 mb-2 "
+          className="text-center text-lg font-bold text-gray-800 mb-2"
         >
           Captured in {currentYear}
         </Text>
       </View>
 
-      <View
-        className={"flex flex-row justify-center items-center mb-4"}
-      >
-
-        <TripCount frequency={"ytd"}/>
-        <TripCount frequency={"mtd"}/>
+      <View className={"flex flex-row justify-center items-center mb-4"}>
+        <TripCount frequency={"ytd"} />
+        <TripCount frequency={"mtd"} />
       </View>
 
-      <View className="w-full px-8 flex flex-row justify-center items-center">
-        {debug ? (<ClearTripsButton />) : null}
+      <View className="w-full flex flex-row justify-center items-center">
+        {debug ? <ClearTripsButton /> : null}
         <TouchableOpacity
           onPress={toggleAddTripForm}
           className={
-            "py-2 px-8 flex flex-row justify-center items-center rounded-full bg-primary"
+            "py-3 px-12 flex flex-row justify-center items-center rounded-full bg-indigo-600"
           }
         >
-          <FontAwesome5 name="plus" size={20} color="white" />
-          <Text className="text-xl font-bold text-white pl-4">Add Trip</Text>
+          <Text className="text-xl font-semibold text-white pr-4 tracking-wide">
+            Add Trip
+          </Text>
+          <FontAwesome5 name="road" size={28} color="white" />
         </TouchableOpacity>
       </View>
     </View>
