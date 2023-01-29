@@ -65,8 +65,11 @@ const TripsOverviewScreen = ({ navigation }) => {
           </>
         ) : (
           <View className="w-full flex flex-col justify-center items-center pt-10">
-            <Text className="text-gray-700 text-center mb-4 font-semibold text-3xl">
-              Tap the "Add Trip" button to Get Started
+            <Text className="text-gray-500 text-center font-medium text-xl">
+              Tap the "Add Trip" button 
+            </Text>
+            <Text className="text-gray-500 text-center font-medium text-xl mb-3">
+              to Get Started
             </Text>
             <GrayedIcon />
           </View>
